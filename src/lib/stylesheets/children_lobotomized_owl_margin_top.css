@@ -1,0 +1,6 @@
+.children_lobotomized_owl_margin_top {
+	--margin_top: 1em;
+	& > * + * {
+		margin-top: var(--margin_top);
+	}
+}

@@ -1,0 +1,43 @@
+.mask_border_layers {
+	/* @using .grid_layers behavior */
+
+	--fallback_border: none;
+	--fallback_border_radius: 0;
+	--mask_repeat: stretch;
+	--mask_slice: 30 fill;
+	--mask_width: 0.666em;
+
+	height: 100%;
+
+	& * {
+		height: 100%;
+
+		@supports (mask-border-source: var(--mask_source)) {
+			mask-border-repeat: var(--mask_repeat);
+			mask-border-slice: var(--mask_slice);
+			mask-border-source: var(--mask_source);
+			mask-border-width: var(--mask_width);
+		}
+		@supports (-webkit-mask-box-image: var(--mask_source)) {
+			-webkit-mask-box-image-repeat: var(--mask_repeat);
+			-webkit-mask-box-image-slice: var(--mask_slice);
+			-webkit-mask-box-image-source: var(--mask_source);
+			-webkit-mask-box-image-width: var(--mask_width);
+		}
+	}
+
+	& > .mask_border_layers_fallback {
+		border: var(--fallback_border);
+		border-radius: var(--fallback_border_radius);
+		@supports ((mask-border-source: var(--mask_source)) or (-webkit-mask-box-image: var(--mask_source))) {
+			border: 0px solid transparent; /* required for the mask-border to work in some browsers, in other words you can not set border:none */
+			border-radius: 0; /* set to 0 to show the whole mask */
+		}
+	}
+	& > :not(.mask_border_layers_fallback) {
+		display: none;
+		@supports ((mask-border-source: var(--mask_source)) or (-webkit-mask-box-image: var(--mask_source))) {
+			display: initial;
+		}
+	}
+}

@@ -1,0 +1,202 @@
+*,
+*::after,
+*::before {
+	border: transparent;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+	box-sizing: border-box;
+	margin-block: 0;
+	margin-inline: 0;
+	margin: 0;
+	mask-position: center;
+	mask-repeat: no-repeat;
+	mask-size: 100%;
+	overscroll-behavior-y: contain; /* only setting y to retain browser navigation behavior */
+	padding-block: 0;
+	padding-inline: 0;
+	padding: 0;
+	scroll-behavior: smooth;
+	scroll-margin-top: 1em;
+	transition:
+		color 200ms,
+		background-color 200ms;
+}
+
+::-moz-range-thumb,
+::-moz-color-swatch {
+	border: transparent;
+	padding: 0;
+	mask-position: center;
+	mask-repeat: no-repeat;
+	mask-size: 100%;
+}
+/* NOTE moz and webkit selectors has to be separated */
+::-webkit-slider-thumb,
+::-webkit-color-swatch-wrapper,
+::-webkit-color-swatch {
+	border: transparent;
+	padding: 0;
+	mask-position: center;
+	mask-repeat: no-repeat;
+	mask-size: 100%;
+}
+::-webkit-color-swatch {
+	/* DEBT&HACK: somehow this fixes an issue of swatch not becoming a perfect circle when adding border-radius, need to do more research why this even worked */
+	margin: -1px;
+}
+
+html {
+	--target_size_minimum: 44px; /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#size */
+	--system_fonts:
+		system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+		"Helvetica Neue", sans-serif;
+	/* DEBT research if the following properties should be defined in the :root selector instead */
+	color-scheme: light dark;
+	hanging-punctuation: first last;
+	interpolate-size: allow-keywords;
+	-moz-text-size-adjust: none;
+	-webkit-text-size-adjust: none;
+	text-size-adjust: none;
+}
+
+body,
+html {
+	height: 100%;
+	font-family: var(--system_fonts);
+}
+
+body {
+	tab-size: 1; /* DEBT tab size mostly matters in code blocks, so tabs are considered as a usual white space in the general case, this might break stuff that expects the tab-size to be the default which is 8 (for example some instances of ascii art), so if a user finds such a exception change this at that time */
+	text-decoration-skip-ink: auto;
+	text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+h1::first-letter,
+h2::first-letter,
+h3::first-letter,
+h4::first-letter,
+h5::first-letter,
+h6::first-letter,
+p::first-letter {
+	text-transform: capitalize;
+}
+
+menu,
+ol,
+ul {
+	list-style: none;
+}
+
+button,
+dialog,
+input,
+select,
+textarea {
+	background-color: transparent;
+	border: none; /* DEBT&HACK: For some reason we need border none for these elements too as the * selectors did not work, research why this is */
+	color: inherit;
+	font: inherit;
+}
+
+button,
+input[type="range"],
+label:has(input[type="radio"]),
+label:has(input[type="checkbox"]) {
+	cursor: pointer;
+}
+
+button,
+label,
+input {
+	line-height: 1;
+}
+
+blockquote,
+code,
+details,
+li,
+p,
+textarea {
+	line-height: 1.666;
+	max-width: 50ch;
+}
+
+:disabled {
+	cursor: not-allowed;
+}
+
+a {
+	color: inherit;
+}
+
+cite {
+	quotes: "“" "”";
+}
+cite::before {
+	content: open-quote;
+}
+cite::after {
+	content: close-quote;
+}
+
+blockquote {
+	border-left: 0.25em solid var(--gray_5);
+	font-style: italic;
+	padding: 0 0.666em;
+}
+
+strong {
+	font-weight: 900;
+}
+
+q {
+	font-style: italic;
+}
+
+kbd {
+	border: 0.1em solid currentColor;
+	border-radius: 0.3em;
+	font-size: 0.85em;
+	font-weight: 700;
+	padding: 0.1em 0.2em;
+	white-space: nowrap;
+}
+
+img {
+	background-repeat: no-repeat;
+	background-size: contain;
+	display: block;
+	font-style: italic;
+	max-height: 100%;
+	max-width: 100%;
+	object-fit: contain;
+	overflow: hidden; /* chrome and maybe other user agents has started to set overflow:clip */
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::after,
+	*::before {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+@media (prefers-reduced-transparency) {
+	*,
+	*::before,
+	*::after {
+		opacity: 1;
+	}
+}

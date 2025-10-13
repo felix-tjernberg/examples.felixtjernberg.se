@@ -1,0 +1,9 @@
+.grid_layers,
+.mask_border_layers {
+	display: grid;
+	grid-template-areas: "layers";
+	& > * {
+		grid-area: layers;
+		z-index: 1; /* DEBT explain this, think it has something with browser composition bugging out unless this is added, which made certain effects not indexed or work correctly */
+	}
+}
