@@ -14,7 +14,7 @@ RUN npm i --only=production
 
 COPY --from=sk-build /usr/src/app/build /usr/src/app/build
 
-ENV ORIGIN=https://mistlandia.felixtjernberg.se
+ENV ORIGIN=https://examples.felixtjernberg.se
 # DEBT figure out if any of the below is necessary https://kit.svelte.dev/docs/adapter-node
 # ENV HOST_HEADER=x-forwarded-host
 # ENV PROTOCOL_HEADER=x-forwarded-proto
