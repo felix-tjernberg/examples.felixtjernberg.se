@@ -89,6 +89,9 @@ h6::first-letter,
 p::first-letter {
 	text-transform: capitalize;
 }
+.first_letter_transform_none::first-letter {
+	text-transform: none;
+}
 
 menu,
 ol,
@@ -199,4 +202,9 @@ img {
 	*::after {
 		opacity: 1;
 	}
+}
+
+body,
+body > div {
+	height: 100%;
 }
