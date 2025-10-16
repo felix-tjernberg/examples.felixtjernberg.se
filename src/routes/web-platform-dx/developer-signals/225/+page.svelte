@@ -74,6 +74,9 @@
 		}
 	}
 	.mask_border_layers {
+		--fallback_border: 0.2em solid rgb(233, 154, 194);
+		--fallback_border_radius: 1em;
+
 		& .background,
 		& .border {
 			animation: 20s hue_rotation_animation infinite linear;
